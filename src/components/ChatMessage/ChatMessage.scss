@@ -1,0 +1,104 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.message {
+  display: flex;
+  gap: $spacing-md;
+  margin-bottom: $spacing-xl;
+  animation: fadeInUp $transition-medium;
+
+  &.user {
+    flex-direction: row-reverse;
+
+    .message-content {
+      text-align: right;
+    }
+
+    .message-text {
+      background: $primary-blue;
+      color: white;
+    }
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    .message-content {
+      max-width: 85%;
+    }
+  }
+
+  @media (max-width: 480px) {
+    gap: $spacing-sm;
+    margin-bottom: $spacing-lg;
+
+    .message-content {
+      max-width: 90%;
+    }
+  }
+}
+
+.message-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  @include flex-center;
+  flex-shrink: 0;
+
+  .message.assistant & {
+    background: #e8f0fe;
+    color: $primary-blue;
+  }
+  .message.bot & {
+    background: #e8f0fe;
+    color: $primary-blue;
+  }
+  .message.system & {
+    background: #e8f0fe;
+    color: $primary-blue;
+  }
+
+  .message.user & {
+    background: #f3e8ff;
+    color: $purple;
+  }
+}
+
+.message-content {
+  max-width: 70%;
+}
+
+.message-text {
+  background: $background-white;
+  padding: $spacing-md $spacing-lg;
+  border-radius: 18px;
+  @include card-shadow;
+  line-height: 1.4;
+}
+
+.message-sources {
+  margin-top: $spacing-sm;
+  padding-top: $spacing-sm;
+  border-top: 1px solid $border-light;
+  font-size: 12px;
+}
+
+.source-link {
+  display: inline-block;
+  margin: $spacing-xs $spacing-sm 0 0;
+  padding: 2px $spacing-sm;
+  background: $background-light-gray;
+  border-radius: 12px;
+  color: $text-secondary;
+  text-decoration: none;
+
+  &:hover {
+    background: $border-light;
+    color: $primary-blue;
+  }
+}
+
+.message-time {
+  font-size: 11px;
+  color: $text-tertiary;
+  margin-top: $spacing-xs;
+  padding: 0 $spacing-xs;
+}

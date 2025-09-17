@@ -1,0 +1,69 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.input-wrapper {
+  display: flex;
+  align-items: end;
+  gap: $spacing-md;
+  max-width: 800px;
+  margin: 0 auto;
+  
+  @media (max-width: 480px) {
+    gap: $spacing-sm;
+  }
+}
+
+.message-input {
+  flex: 1;
+  min-height: 44px;
+  max-height: 120px;
+  padding: $spacing-md $spacing-lg;
+  border: 2px solid $border-light;
+  border-radius: 22px;
+  font-size: 14px;
+  font-family: $font-family-base;
+  resize: none;
+  outline: none;
+  transition: all $transition-fast;
+
+  &:focus {
+    border-color: $primary-blue;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.1);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  @media (max-width: 480px) {
+    width: 40px;
+    height: 40px;
+  }
+  
+  @media (max-width: 480px) {
+    padding: $spacing-sm $spacing-md;
+    font-size: 13px;
+  }
+}
+
+.send-btn {
+  @include button-base;
+  @include flex-center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: $border-light;
+  color: $text-secondary;
+  flex-shrink: 0;
+
+  &.active {
+    background: $primary-blue;
+    color: white;
+
+    &:hover {
+      background: $primary-blue-hover;
+      transform: scale(1.05);
+    }
+  }
+}

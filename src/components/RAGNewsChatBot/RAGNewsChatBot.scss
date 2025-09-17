@@ -1,0 +1,50 @@
+@use "../../styles/variables" as *;
+
+.rag-news-chatbot {
+  display: flex;
+  height: 100vh;
+  font-family: $font-family-base;
+  background: $background-light;
+  position: relative;
+  overflow: hidden;
+
+  // Large screens (desktop/laptop) - collapsible sidebar behavior
+  @media (min-width: 1025px) {
+    .main-content {
+      width: calc(100% - 280px);
+    }
+
+    .sidebar {
+      transform: translateX(0);
+    }
+  }
+
+  // Small screens (tablet/mobile) - overlay sidebar behavior
+  @media (max-width: 1024px) {
+    .main-content {
+      width: 100% !important;
+      margin-left: 0 !important;
+    }
+
+    .sidebar {
+      position: fixed;
+      z-index: 999;
+      transform: translateX(-100%);
+
+      &.open {
+        transform: translateX(0);
+      }
+    }
+  }
+}
+
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 998;
+  backdrop-filter: blur(2px);
+}

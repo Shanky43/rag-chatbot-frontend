@@ -1,0 +1,49 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.connection-status {
+  @include flex-align-center;
+  gap: $spacing-xs;
+  font-size: 11px;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: 12px;
+  font-weight: 500;
+
+  &.connected {
+    color: $success-green;
+    background: rgba($success-green, 0.1);
+  }
+
+  &.connecting {
+    color: $text-secondary;
+    background: $background-light-gray;
+
+    .spinning {
+      animation: spin 1s linear infinite;
+    }
+  }
+
+  &.disconnected {
+    color: $primary-red;
+    background: rgba($primary-red, 0.1);
+  }
+
+  .error-text {
+    color: $text-tertiary;
+    font-size: 10px;
+  }
+
+  .reconnect-btn {
+    @include button-base;
+    font-size: 10px;
+    padding: 2px $spacing-xs;
+    background: $primary-red;
+    color: white;
+    border-radius: 4px;
+    margin-left: $spacing-xs;
+
+    &:hover {
+      background: $primary-red-hover;
+    }
+  }
+}

@@ -1,0 +1,53 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.trending-topics {
+  margin-bottom: $spacing-lg;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.trending-header {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-secondary;
+  margin-bottom: $spacing-md;
+  @include flex-align-center;
+}
+
+.topics-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-sm;
+
+  @media (max-width: $breakpoint-mobile) {
+    gap: 6px;
+  }
+}
+
+.topic-chip {
+  @include button-base;
+  padding: $spacing-sm $spacing-lg;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+  transition: all $transition-medium;
+  background-color: #e8f0fe;
+  border-left: 3px solid #1a73e8;
+  &:hover {
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: $breakpoint-mobile) {
+    font-size: 11px;
+    padding: 6px $spacing-md;
+  }
+
+  @media (max-width: 480px) {
+    font-size: 10px;
+    padding: 4px $spacing-sm;
+  }
+}

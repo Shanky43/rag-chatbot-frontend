@@ -1,0 +1,130 @@
+@import "../../styles/variables";
+@import "../../styles/mixins";
+
+.sidebar {
+  width: 280px;
+  background: $background-white;
+  border-right: 1px solid $border-light;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+  transition: transform $transition-medium;
+  height: 100vh;
+
+  // Large screens (desktop/laptop) - collapsible from left
+  @media (min-width: 1025px) {
+    position: relative;
+    z-index: 1;
+  }
+
+  // Small screens (tablet/mobile) - overlay
+  @media (max-width: 1024px) {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+  }
+}
+
+.sidebar-header {
+  padding: $spacing-xl;
+  border-bottom: 1px solid $border-light;
+}
+
+.logo {
+  @include flex-align-center;
+  gap: $spacing-md;
+  font-size: 20px;
+  font-weight: 700;
+  color: $primary-blue;
+  margin-bottom: $spacing-lg;
+
+  &-icon {
+    color: $primary-blue;
+  }
+}
+
+.new-chat-btn {
+  @include button-base;
+  @include flex-align-center;
+  gap: $spacing-sm;
+  width: 100%;
+  padding: $spacing-md $spacing-lg;
+  background: $primary-blue;
+  color: white;
+  border-radius: $spacing-sm;
+  font-weight: 500;
+
+  &:hover {
+    background: $primary-blue-hover;
+    transform: translateY(-1px);
+  }
+}
+
+.chat-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: $spacing-lg;
+
+  h3 {
+    color: $text-secondary;
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: $spacing-md;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+}
+
+.chat-item {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-md;
+  padding: $spacing-md $spacing-sm;
+  border-radius: $spacing-sm;
+  cursor: pointer;
+  transition: all $transition-fast;
+  margin-bottom: $spacing-xs;
+
+  &:hover {
+    background: $background-gray;
+  }
+
+  &.active {
+    background: #e8f0fe;
+    border-left: 3px solid $primary-blue;
+  }
+}
+
+.chat-icon {
+  color: $text-secondary;
+  margin-top: 2px;
+}
+
+.chat-content {
+  flex: 1;
+  overflow: hidden;
+}
+
+.chat-title {
+  font-weight: 500;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-preview {
+  font-size: 12px;
+  color: $text-secondary;
+  margin-bottom: $spacing-xs;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.chat-time {
+  font-size: 11px;
+  color: $text-tertiary;
+}

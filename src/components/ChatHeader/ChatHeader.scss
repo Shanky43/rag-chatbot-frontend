@@ -1,0 +1,117 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.chat-header {
+  padding: $spacing-xl $spacing-xxl;
+  border-bottom: 1px solid $border-light;
+  background: $background-white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  min-height: 70px;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-lg;
+    
+    .btn-text {
+      display: none;
+    }
+  }
+}
+
+.header-left {
+  @include flex-align-center;
+  gap: $spacing-md;
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar-toggle {
+  @include button-base;
+  @include flex-center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background: $background-gray;
+  color: $text-primary;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $border-light;
+    transform: scale(1.05);
+  }
+}
+
+.header-info {
+  @include flex-align-center;
+  gap: $spacing-md;
+  min-width: 0;
+}
+
+.header-text {
+  min-width: 0;
+
+  h2 {
+    margin: 0;
+    color: $text-primary;
+    font-size: 18px;
+  }
+
+  .status-container {
+    @include flex-align-center;
+    gap: $spacing-xs;
+    flex-wrap: wrap;
+  }
+
+  .status-divider {
+    color: $text-tertiary;
+    font-size: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    
+    @media (max-width: $breakpoint-small) {
+      font-size: 16px;
+    }
+  }
+}
+
+.header-icon {
+  color: $primary-blue;
+  background: #e8f0fe;
+  padding: $spacing-sm;
+  border-radius: 50%;
+}
+
+.status {
+  font-size: 12px;
+  color: $success-green;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  
+  @media (max-width: 480px) {
+    display: none;
+  }
+}
+
+.clear-session-btn {
+  @include button-base;
+  @include flex-align-center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  background: $primary-red;
+  color: white;
+  border-radius: 6px;
+  font-size: 14px;
+
+  &:hover {
+    background: $primary-red-hover;
+  }
+  
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-sm;
+    min-width: 40px;
+    justify-content: center;
+  }
+}

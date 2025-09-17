@@ -1,0 +1,158 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.message-metadata {
+  margin-top: $spacing-sm;
+  border-top: 1px solid $border-light;
+  padding-top: $spacing-sm;
+}
+
+.metadata-toggle {
+  @include button-base;
+  @include flex-align-center;
+  justify-content: space-between;
+  width: 100%;
+  padding: $spacing-xs $spacing-sm;
+  background: $background-light-gray;
+  border-radius: 6px;
+  font-size: 11px;
+  color: $text-secondary;
+
+  &:hover {
+    background: $border-light;
+  }
+}
+
+.metadata-summary {
+  @include flex-align-center;
+  gap: $spacing-xs;
+  flex: 1;
+  text-align: left;
+
+  .similarity {
+    color: $success-green;
+    font-weight: 500;
+  }
+}
+
+.metadata-details {
+  margin-top: $spacing-sm;
+  padding: $spacing-sm;
+  background: $background-gray;
+  border-radius: 6px;
+  font-size: 12px;
+}
+
+.metadata-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-md;
+  margin-bottom: $spacing-sm;
+}
+
+.stat-item {
+  @include flex-align-center;
+  gap: $spacing-xs;
+  color: $text-secondary;
+}
+
+.source-details {
+  h4 {
+    margin: 0 0 $spacing-sm 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: $text-primary;
+  }
+}
+
+.source-card {
+  display: flex;
+  gap: $spacing-sm;
+  padding: $spacing-sm;
+  background: $background-white;
+  border-radius: 6px;
+  border: 1px solid $border-light;
+}
+
+.source-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.source-info {
+  flex: 1;
+  min-width: 0;
+
+  h5 {
+    margin: 0 0 $spacing-xs 0;
+    font-size: 12px;
+    font-weight: 600;
+    color: $text-primary;
+    line-height: 1.3;
+  }
+
+  p {
+    margin: 0 0 $spacing-xs 0;
+    font-size: 11px;
+    color: $text-secondary;
+  }
+}
+
+.source-author {
+  font-style: italic;
+}
+
+.source-publication {
+  font-weight: 500;
+  color: $primary-blue;
+}
+
+.source-metrics {
+  display: flex;
+  gap: $spacing-md;
+  margin: $spacing-xs 0;
+}
+
+.metric {
+  @include flex-align-center;
+  gap: $spacing-xs;
+  font-size: 10px;
+  color: $text-tertiary;
+}
+
+.source-link-btn {
+  @include flex-align-center;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-sm;
+  background: $primary-blue;
+  color: white;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 10px;
+  font-weight: 500;
+  margin-top: $spacing-xs;
+  display: inline-flex;
+
+  &:hover {
+    background: $primary-blue-hover;
+  }
+}
+
+@media (max-width: $breakpoint-mobile) {
+  .source-card {
+    flex-direction: column;
+  }
+
+  .source-image {
+    width: 100%;
+    height: 120px;
+  }
+
+  .metadata-stats {
+    flex-direction: column;
+    gap: $spacing-xs;
+  }
+}

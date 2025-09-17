@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
+.loading-spinner {
+  @include flex-center;
+}
+
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid $border-light;
+  border-top: 2px solid $primary-blue;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}

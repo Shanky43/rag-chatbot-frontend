@@ -1,0 +1,11 @@
+@import '../../styles/variables';
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  background: $background-white;
+  transition: width $transition-medium;
+  min-width: 0;
+  height: 100vh;
+  position: relative;
+}

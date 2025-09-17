@@ -1,0 +1,15 @@
+@import '../../styles/variables';
+
+.input-container {
+  padding: $spacing-xl $spacing-xxl;
+  border-top: 1px solid $border-light;
+  background: $background-white;
+
+  @media (max-width: $breakpoint-mobile) {
+    padding: $spacing-lg;
+  }
+  
+  @media (max-width: 480px) {
+    padding: $spacing-md;
+  }
+}

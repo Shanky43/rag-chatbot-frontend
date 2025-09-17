@@ -2,6 +2,7 @@ import React from "react";
 import { Bot, RotateCcw, Menu, X } from "lucide-react";
 import ConnectionStatus from "../ConnectionStatus/ConnectionStatus";
 import "./ChatHeader.scss";
+import LiveCharbot from "../../assets/Livechatbot.gif";
 
 const ChatHeader = ({
   onClearSession,
@@ -20,15 +21,16 @@ const ChatHeader = ({
         )}
 
         <div className="header-info">
-          <Bot className="header-icon" />
+         <img src={LiveCharbot} alt="Assistant animation" style={{
+    width: "50px",
+    height: "50px",
+    transform: "scale(1.5)",
+    transformOrigin: "center"
+  }}/>
           <div className="header-text">
             <h2>RAG News ChatBot</h2>
             <div className="status-container">
               <ConnectionStatus {...connectionStatus} />
-              <span className="status-divider">•</span>
-              <span className="status">
-                Powered by Gemini AI & Vector Search
-              </span>
             </div>
           </div>
         </div>

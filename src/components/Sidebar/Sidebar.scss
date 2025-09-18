@@ -1,3 +1,133 @@
+// @import "../../styles/variables";
+// @import "../../styles/mixins";
+
+// .sidebar {
+//   width: 280px;
+//   background: $background-white;
+//   border-right: 1px solid $border-light;
+//   display: flex;
+//   flex-direction: column;
+//   box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+//   transition: transform $transition-medium;
+//   height: 100vh;
+
+//   // Large screens (desktop/laptop) - collapsible from left
+//   @media (min-width: 1025px) {
+//     position: relative;
+//     z-index: 1;
+//   }
+
+//   // Small screens (tablet/mobile) - overlay
+//   @media (max-width: 1024px) {
+//     position: fixed;
+//     top: 0;
+//     left: 0;
+//     z-index: 999;
+//   }
+// }
+
+// .sidebar-header {
+//   padding: $spacing-xl;
+//   border-bottom: 1px solid $border-light;
+// }
+
+// .logo {
+//   @include flex-align-center;
+//   gap: $spacing-md;
+//   font-size: 20px;
+//   font-weight: 700;
+//   color: $primary-blue;
+//   margin-bottom: $spacing-lg;
+
+//   &-icon {
+//     color: $primary-blue;
+//   }
+// }
+
+// .new-chat-btn {
+//   @include button-base;
+//   @include flex-align-center;
+//   gap: $spacing-sm;
+//   width: 100%;
+//   padding: $spacing-md $spacing-lg;
+//   background: $primary-blue;
+//   color: white;
+//   border-radius: $spacing-sm;
+//   font-weight: 500;
+
+//   &:hover {
+//     background: $primary-blue-hover;
+//     transform: translateY(-1px);
+//   }
+// }
+
+// .chat-list {
+//   flex: 1;
+//   overflow-y: auto;
+//   padding: $spacing-lg;
+
+//   h3 {
+//     color: $text-secondary;
+//     font-size: 14px;
+//     font-weight: 500;
+//     margin-bottom: $spacing-md;
+//     text-transform: uppercase;
+//     letter-spacing: 0.5px;
+//   }
+// }
+
+// .chat-item {
+//   display: flex;
+//   align-items: flex-start;
+//   gap: $spacing-md;
+//   padding: $spacing-md $spacing-sm;
+//   border-radius: $spacing-sm;
+//   cursor: pointer;
+//   transition: all $transition-fast;
+//   margin-bottom: $spacing-xs;
+
+//   &:hover {
+//     background: $background-gray;
+//   }
+
+//   &.active {
+//     background: #e8f0fe;
+//     border-left: 3px solid $primary-blue;
+//   }
+// }
+
+// .chat-icon {
+//   color: $text-secondary;
+//   margin-top: 2px;
+// }
+
+// .chat-content {
+//   flex: 1;
+//   overflow: hidden;
+// }
+
+// .chat-title {
+//   font-weight: 500;
+//   color: $text-primary;
+//   margin-bottom: $spacing-xs;
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }
+
+// .chat-preview {
+//   font-size: 12px;
+//   color: $text-secondary;
+//   margin-bottom: $spacing-xs;
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+// }
+
+// .chat-time {
+//   font-size: 11px;
+//   color: $text-tertiary;
+// }
 @import "../../styles/variables";
 @import "../../styles/mixins";
 
@@ -54,10 +184,16 @@
   color: white;
   border-radius: $spacing-sm;
   font-weight: 500;
+  transition: all $transition-fast;
 
-  &:hover {
+  &:hover:not(:disabled) {
     background: $primary-blue-hover;
     transform: translateY(-1px);
+  }
+
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 }
 
@@ -66,14 +202,101 @@
   overflow-y: auto;
   padding: $spacing-lg;
 
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $border-light;
+    border-radius: 3px;
+
+    &:hover {
+      background: darken($border-light, 10%);
+    }
+  }
+}
+
+.chat-list-header {
+  @include flex-align-center;
+  justify-content: space-between;
+  margin-bottom: $spacing-md;
+
   h3 {
     color: $text-secondary;
     font-size: 14px;
     font-weight: 500;
-    margin-bottom: $spacing-md;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    margin: 0;
   }
+
+  .refresh-btn {
+    @include button-base;
+    @include flex-center;
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    background: transparent;
+    color: $text-secondary;
+    transition: all $transition-fast;
+
+    &:hover:not(:disabled) {
+      background: $background-gray;
+      color: $primary-blue;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .spinning {
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+
+.loading-sessions {
+  @include flex-align-center;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-xl;
+  color: $text-secondary;
+  text-align: center;
+
+  .loading-spinner {
+    .spinning {
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+
+.empty-state {
+  @include flex-align-center;
+  flex-direction: column;
+  gap: $spacing-md;
+  padding: $spacing-xl;
+  color: $text-secondary;
+  text-align: center;
+
+  p {
+    font-weight: 500;
+    margin: 0;
+  }
+
+  span {
+    font-size: 12px;
+    color: $text-tertiary;
+  }
+}
+
+.chat-item-wrapper {
+  position: relative;
+  margin-bottom: $spacing-xs;
 }
 
 .chat-item {
@@ -84,26 +307,36 @@
   border-radius: $spacing-sm;
   cursor: pointer;
   transition: all $transition-fast;
-  margin-bottom: $spacing-xs;
+  position: relative;
 
   &:hover {
     background: $background-gray;
+
+    .chat-actions {
+      opacity: 1;
+    }
   }
 
   &.active {
     background: #e8f0fe;
     border-left: 3px solid $primary-blue;
+
+    .chat-actions {
+      opacity: 1;
+    }
   }
 }
 
 .chat-icon {
   color: $text-secondary;
   margin-top: 2px;
+  flex-shrink: 0;
 }
 
 .chat-content {
   flex: 1;
   overflow: hidden;
+  min-width: 0;
 }
 
 .chat-title {
@@ -122,9 +355,174 @@
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  line-height: 1.3;
+}
+
+.chat-meta {
+  @include flex-align-center;
+  justify-content: space-between;
+  gap: $spacing-sm;
+  font-size: 11px;
 }
 
 .chat-time {
-  font-size: 11px;
   color: $text-tertiary;
+  flex-shrink: 0;
+}
+
+.message-count {
+  color: $text-tertiary;
+  background: $background-gray;
+  padding: 2px 6px;
+  border-radius: 10px;
+  font-size: 10px;
+  white-space: nowrap;
+}
+
+.chat-actions {
+  opacity: 0;
+  transition: opacity $transition-fast;
+  flex-shrink: 0;
+}
+
+.context-menu-btn {
+  @include button-base;
+  @include flex-center;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  background: transparent;
+  color: $text-secondary;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $background-light-gray;
+    color: $text-primary;
+  }
+}
+
+.context-menu {
+  position: absolute;
+  top: 0;
+  right: 28px;
+  background: $background-white;
+  border: 1px solid $border-light;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  min-width: 120px;
+  overflow: hidden;
+}
+
+.context-menu-item {
+  @include button-base;
+  @include flex-align-center;
+  gap: $spacing-sm;
+  width: 100%;
+  padding: $spacing-sm $spacing-md;
+  font-size: 12px;
+  color: $text-primary;
+  background: transparent;
+  text-align: left;
+  transition: all $transition-fast;
+
+  &:hover {
+    background: $background-gray;
+  }
+
+  &.delete {
+    color: $primary-red;
+
+    &:hover {
+      background: rgba($primary-red, 0.1);
+    }
+  }
+}
+
+.delete-confirmation {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  @include flex-center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.delete-modal {
+  background: $background-white;
+  border-radius: 12px;
+  padding: $spacing-xl;
+  max-width: 300px;
+  margin: $spacing-lg;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  text-align: center;
+
+  .delete-icon {
+    @include flex-center;
+    width: 48px;
+    height: 48px;
+    background: rgba($primary-red, 0.1);
+    border-radius: 50%;
+    margin: 0 auto $spacing-lg;
+    color: $primary-red;
+  }
+
+  h4 {
+    margin: 0 0 $spacing-md;
+    color: $text-primary;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0 0 $spacing-xl;
+    color: $text-secondary;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .delete-actions {
+    display: flex;
+    gap: $spacing-md;
+    justify-content: center;
+  }
+
+  .btn-cancel,
+  .btn-delete {
+    @include button-base;
+    padding: $spacing-sm $spacing-lg;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all $transition-fast;
+  }
+
+  .btn-cancel {
+    background: $background-gray;
+    color: $text-primary;
+
+    &:hover {
+      background: $border-light;
+    }
+  }
+
+  .btn-delete {
+    background: $primary-red;
+    color: white;
+
+    &:hover {
+      background: $primary-red-hover;
+    }
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
 }

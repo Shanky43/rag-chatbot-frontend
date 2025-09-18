@@ -16,7 +16,7 @@ const MessageInput = ({ inputMessage, setInputMessage, isLoading, onSendMessage 
         value={inputMessage}
         onChange={(e) => setInputMessage(e.target.value)}
         onKeyPress={handleKeyPress}
-        placeholder="Ask me about news, current events, politics, technology..."
+        placeholder="Curious about something? Let’s find the latest updates..."
         rows="1"
         className="message-input"
         disabled={isLoading}

@@ -25,9 +25,9 @@ const ConnectionStatus = ({ isConnected, isConnecting, connectionError, onReconn
     <div className="connection-status disconnected">
       <WifiOff size={14} />
       <span>Disconnected</span>
-      {connectionError && (
+      {/* {connectionError && (
         <span className="error-text">({connectionError})</span>
-      )}
+      )} */}
       <button className="reconnect-btn" onClick={onReconnect}>
         Reconnect
       </button>

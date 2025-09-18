@@ -12,25 +12,19 @@ const TrendingTopics = ({ onTopicClick }) => {
       query:
         "Top sports news, match results, and highlights from around the world?",
     },
-    {
-      label: "Tesla",
-      query:
-        "All articles about Tesla from the last month, sorted by most recent first?",
-    },
-    {
-      label: "Economy & Markets",
-      query: "Recent economic developments, market trends, and financial news?",
-    },
-    {
-      label: "Innovation Trends",
-      query:
-        "Emerging trends, innovations, and breakthrough ideas across industries?",
-    },
-    {
-      label: "Apple News",
-      query:
-        "Latest news, product updates, and innovations from Apple, sorted by recent first?",
-    },
+  {
+    label: "Entertainment",
+    query: "Breaking news on movies, TV shows, music, and celebrity updates",
+  },
+  {
+    label: "Environment",
+    query: "Latest news on climate change, conservation, and environmental policies",
+  },
+  {
+    label: "Travel & Tourism",
+    query: "Updates on travel destinations, tourism trends, and global travel news",
+  }
+ 
   ];
 
   return (

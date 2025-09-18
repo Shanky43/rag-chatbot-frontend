@@ -1,60 +1,3 @@
-// import React from 'react';
-// import { MessageCircle, Plus, Newspaper } from 'lucide-react';
-// import './Sidebar.scss';
-
-// const Sidebar = ({ chats, activeChat, onNewChat, onChatSelect, isOpen, isMobile, onClose }) => {
-//   const handleChatSelect = (chatId) => {
-//     onChatSelect(chatId);
-//     if (isMobile) {
-//       onClose();
-//     }
-//   };
-
-//   const handleNewChat = () => {
-//     onNewChat();
-//     if (isMobile) {
-//       onClose();
-//     }
-//   };
-
-//   return (
-//     <div className={`sidebar ${isOpen ? 'open' : ''} ${isMobile ? 'mobile' : 'desktop'}`}>
-//       <div className="sidebar-header">
-//         <div className="logo">
-//           <Newspaper className="logo-icon" />
-//           <span>RAG NewsBot</span>
-//         </div>
-//         <button className="new-chat-btn" onClick={handleNewChat}>
-//           <Plus size={16} />
-//           New Chat
-//         </button>
-//       </div>
-
-//       <div className="chat-list">
-//         <h3>Chat Sessions</h3>
-//         {chats.map(chat => (
-//           <div 
-//             key={chat.id} 
-//             className={`chat-item ${activeChat === chat.id ? 'active' : ''}`}
-//             onClick={() => handleChatSelect(chat.id)}
-//           >
-//             <div className="chat-icon">
-//               <MessageCircle size={16} />
-//             </div>
-//             <div className="chat-content">
-//               <div className="chat-title">{chat.title}</div>
-//               <div className="chat-preview">{chat.lastMessage}</div>
-//               <div className="chat-time">{chat.timestamp}</div>
-//             </div>
-//           </div>
-//         ))}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Sidebar;
-
 import React, { useState } from 'react';
 import { MessageCircle, Plus, Newspaper, MoreVertical, Trash2, RefreshCw, AlertTriangle } from 'lucide-react';
 import './Sidebar.scss';
@@ -119,6 +62,7 @@ const Sidebar = ({
     return () => document.removeEventListener('click', handleClickOutside);
   }, []);
 
+
   return (
     <div className={`sidebar ${isOpen ? 'open' : ''} ${isMobile ? 'mobile' : 'desktop'}`}>
       <div className="sidebar-header">
@@ -159,7 +103,9 @@ const Sidebar = ({
             <span>Start a new conversation to get started!</span>
           </div>
         ) : (
-          chats.map(chat => (
+          chats.map(chat =>{
+        
+            return  (
             <div key={chat.id} className="chat-item-wrapper">
               <div 
                 className={`chat-item ${activeChat === chat.id ? 'active' : ''}`}
@@ -179,7 +125,15 @@ const Sidebar = ({
   }}
 />
 
-                  <div className="chat-preview" dangerouslySetInnerHTML={{ __html: chat.lastMessage || 'No messages yet' }}/>
+                  {/* <div className="chat-preview" dangerouslySetInnerHTML={{ __html: chat.lastMessage || 'No messages yet' }}/> */}
+                  <div
+  className="chat-preview"
+  dangerouslySetInnerHTML={{
+    __html: chat?.lastMessage
+      ? chat.lastMessage.charAt(0).toUpperCase() + chat.lastMessage.slice(1)
+      : "No messages yet",
+  }}
+/>
                   
                   <div className="chat-meta">
                     <span className="chat-time">{chat.timestamp}</span>
@@ -238,7 +192,8 @@ const Sidebar = ({
                 </div>
               )}
             </div>
-          ))
+          )
+          })
         )}
       </div>
     </div>

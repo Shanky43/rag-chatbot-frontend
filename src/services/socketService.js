@@ -8,7 +8,10 @@ class SocketService {
     this.listeners = new Map();
   }
 
-  connect(url = import.meta.env.VITE_BACKEND_HOST ? `http://${import.meta.env.VITE_BACKEND_HOST}:5000` : 'http://localhost:5000') {
+  connect(url = import.meta.env.VITE_BACKEND_HOST
+    ? `${import.meta.env.VITE_BACKEND_HOST}/api/v1/chat`
+    : 'http://localhost:5432/api/v1/chat'
+  ) {
     if (this.socket) {
       this.disconnect();
     }

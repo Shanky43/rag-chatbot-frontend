@@ -1,5 +1,7 @@
+const API_BASE_URL = import.meta.env.VITE_BACKEND_HOST
+  ? `${import.meta.env.VITE_BACKEND_HOST}/api/v1`
+  : 'http://localhost:5000/api/v1';
 
-const API_BASE_URL = import.meta.env.VITE_BACKEND_HOST ? `${import.meta.env.VITE_BACKEND_HOST}/api/v1` : 'http://localhost:5000/api/v1';
 
 class ApiService {
   constructor() {
@@ -39,7 +41,7 @@ class ApiService {
         generateAnswer: generateAnswer.toString()
       });
 
-      const response = await this.request(`/news/search?${params}`, {
+      const response = await this.request(`/fetch-news/search?${params}`, {
         method: 'GET'
       });
 

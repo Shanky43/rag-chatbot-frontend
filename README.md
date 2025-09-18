@@ -318,7 +318,6 @@ The application integrates with the following backend endpoints:
 - `GET /api/v1/news/search` - Search news corpus with RAG
 
 ### WebSocket Events
-
 Real-time communication through Socket.IO:
 
 #### Client Events

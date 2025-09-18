@@ -9,8 +9,8 @@ class SocketService {
   }
 
   connect(url = import.meta.env.VITE_BACKEND_HOST
-    ? `${import.meta.env.VITE_BACKEND_HOST}/api/v1/chat`
-    : 'http://localhost:5432/api/v1/chat'
+    ? `${import.meta.env.VITE_BACKEND_HOST}`
+    : 'http://localhost:5000'  // Changed from 5432 to typical web port
   ) {
     if (this.socket) {
       this.disconnect();

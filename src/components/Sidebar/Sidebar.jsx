@@ -169,7 +169,16 @@ const Sidebar = ({
                   <MessageCircle size={16} />
                 </div>
                 <div className="chat-content">
-                  <div className="chat-title"   dangerouslySetInnerHTML={{ __html: chat.title }}/>
+                  {/* <div className="chat-title"   dangerouslySetInnerHTML={{ __html: chat.title }}/> */}
+                  <div
+  className="chat-title"
+  dangerouslySetInnerHTML={{
+    __html: chat?.title
+      ? chat.title.charAt(0).toUpperCase() + chat.title.slice(1)
+      : "",
+  }}
+/>
+
                   <div className="chat-preview" dangerouslySetInnerHTML={{ __html: chat.lastMessage || 'No messages yet' }}/>
                   
                   <div className="chat-meta">
